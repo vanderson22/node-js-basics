@@ -1,0 +1,21 @@
+{
+  "name": "js-basics",
+  "version": "1.0.0",
+  "description": "Complete node.js guide",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vanderson22/node-js-basics.git"
+  },
+  "author": "Vanderson Nogueira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vanderson22/node-js-basics/issues"
+  },
+  "homepage": "https://github.com/vanderson22/node-js-basics#readme"
+}
