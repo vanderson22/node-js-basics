@@ -18,6 +18,10 @@ app.use('/add-product', (request, response, next)=>{
     response.send('<h1> Welcome to product page.</h1>');
 });
 
+app.use('/',(request, response, next)=>{
+    console.log('running middleware...');
+     next();
+});
 
 app.use('/',(request, response, next)=>{
 
