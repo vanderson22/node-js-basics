@@ -1,12 +1,12 @@
 
 const fs = require('fs');
 
+let username = '';
 const handleRequest = (req, resp) => {
 
     const url = req.url
     const method = req.method;
     
-    let username = '';
 
     const htmlMessage = `<html> 
                             <h1> Welcome to assignment page! </h1>
@@ -115,7 +115,6 @@ const handleRequest = (req, resp) => {
         return req.on('end', () => {
             const parsedBody = Buffer.concat(body).toString();
             username = parsedBody.split('=')[1];
-
             console.log(`username is : ${parsedBody.split('=')[1]}`);
 
             resp.statusCode = 302;
@@ -128,7 +127,7 @@ const handleRequest = (req, resp) => {
 
     resp.setHeader('Content-Type', 'text/html')
     resp.setHeader('Charset', 'utf-8')
-    resp.write('<html><h3> Page not found. </h3><html>')
+    resp.write('<html><h3> Page not found! </h3><html>')
     return resp.end();
 }
 
