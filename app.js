@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 
 const path = require('path');
 
+const rootDir = require('./util/path')
+
 const app = express();
 
 const adminRoutes = require('./routes/admin');
@@ -17,7 +19,7 @@ app.use(shopRoutes);
 app.use("/" , (req, resp, next) =>{
 
 
-    resp.status(404).sendFile( path.join( __dirname, 'views', 'page-not-found.html'));
+    resp.status(404).sendFile( path.join(rootDir, 'views', 'page-not-found.html'));
 } );
 
 app.listen(3000);
