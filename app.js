@@ -7,19 +7,22 @@ const rootDir = require('./util/path')
 
 const app = express();
 
+
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
 
 app.use(bodyParser.urlencoded({extended: false}));
+//This is a built-in middleware function in Express. It serves static files and is based on serve-static.
+app.use(express.static(path.join(rootDir, 'public')));
 
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 
 app.use("/" , (req, resp, next) =>{
-
-
-    resp.status(404).sendFile( path.join(rootDir, 'views', 'page-not-found.html'));
+    resp
+        .status(404)
+        .sendFile( path.join(rootDir, 'views', 'page-not-found.html'));
 } );
 
 app.listen(3000);
