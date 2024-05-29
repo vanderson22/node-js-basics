@@ -16,8 +16,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 //This is a built-in middleware function in Express. It serves static files and is based on serve-static.
 app.use(express.static(path.join(rootDir, 'public')));
 
-app.use('/admin', adminRoutes);
-app.use(shopRoutes);
+app.use('/admin', adminRoutes.routes);
+app.use(shopRoutes.routes);
 
 app.use("/" , (req, resp, next) =>{
     resp
