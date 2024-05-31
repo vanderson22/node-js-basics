@@ -16,6 +16,9 @@ app.set('view engine' , 'pug');
 //views in views folder
 app.set('views' , 'views');
 
+console.log('loading server....');
+  
+
 app.use(bodyParser.urlencoded({extended: false}));
 //This is a built-in middleware function in Express. It serves static files and is based on serve-static.
 app.use(express.static(path.join(rootDir, 'public')));
