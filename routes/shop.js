@@ -11,7 +11,7 @@ router.get('/', (req, res, next) => {
   console.log(adminData.products)
   // res.sendFile( path.join( rootDir ,  'views', 'shop.html'));
   //with pug template engine - shop.pug
-  res.render('shop'); 
+  res.render('shop' , {prods: adminData.products}); 
 });
 
 module.exports.routes = router;
