@@ -11,6 +11,10 @@ const app = express();
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
+//this is the template engine
+app.set('view engine' , 'pug');
+//views in views folder
+app.set('views' , 'views');
 
 app.use(bodyParser.urlencoded({extended: false}));
 //This is a built-in middleware function in Express. It serves static files and is based on serve-static.
