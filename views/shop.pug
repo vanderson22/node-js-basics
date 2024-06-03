@@ -6,6 +6,7 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible" content="ie=edge")
     title Add Product
     link(rel="stylesheet", href="/css/main.css")
+    link(rel="stylesheet", href="/css/product.css")
     style.
 
   body
@@ -19,6 +20,15 @@ html(lang="en")
 
     main
       h1 My Products
-      p List of all the products...
-
-       #{prods}
+      
+         
+      if prods.length
+        .product-grid
+          each product in prods
+            .product-card
+              img(src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUXtrGidlmfshK3yNyzr9RCTYbV-hdk4zG8Q&usqp=CAU', alt=product.title)
+              h2 #{product.title}
+              p 0
+            //-   p Price: $#{product.price}
+      else
+        p No products available

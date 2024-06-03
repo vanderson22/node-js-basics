@@ -32,4 +32,6 @@ app.use("/" , (req, resp, next) =>{
         .sendFile( path.join(rootDir, 'views', 'page-not-found.html'));
 } );
 
-app.listen(3000);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT);

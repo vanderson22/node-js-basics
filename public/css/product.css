@@ -43,3 +43,30 @@ main {
 .main-header__item a.active {
     color: #3e00a1;
 }
+
+
+/* product.css */
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-card h2 {
+    margin: 0 0 10px;
+    font-size: 1.5rem;
+  }
+  
+  .product-card p {
+    margin: 0;
+  }
+  
