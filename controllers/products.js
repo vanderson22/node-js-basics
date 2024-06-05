@@ -16,7 +16,7 @@ module.exports.getAddProduct =
 
 } 
 
-const products = [];
+const productsList = [];
 
 module.exports.postAddProduct = 
 (req, res, next) => {
@@ -30,14 +30,29 @@ module.exports.postAddProduct =
 
 module.exports.getProducts = 
 (req, res, next) => {
-      const products = Product.fetchAll();
+      // const products = Product.fetchAll();
       
-      res.render('shop', {
-        prods: products,
-        pageTitle: 'Shop',
-        path: '/',
-        hasProducts: products.length > 0,
-        activeShop: true,
-        productCSS: true
-      });
+      // res.render('shop', {
+      //   prods: products,
+      //   pageTitle: 'Shop',
+      //   path: '/',
+      //   hasProducts: products.length > 0,
+      //   activeShop: true,
+      //   productCSS: true
+      // });
+
+      //renderizar após o callback terminar, ele substitui o return!
+       Product.fetchAll(productsCallback =>{
+
+        res.render('shop', {
+          prods: productsCallback,
+          pageTitle: 'Shop',
+          path: '/',
+          hasProducts: productsCallback.length > 0,
+          activeShop: true,
+          productCSS: true
+        });
+       });
+      
+
     }
