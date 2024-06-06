@@ -1,56 +1,40 @@
 const fs = require('fs');
 const path = require('path');
 
-const products = [];
-const rootFolder = path.dirname(require.main.filename);
-const dataFolder = path.join(rootFolder, 'data', 'products.json');
+const p = path.join(
+  path.dirname(process.mainModule.filename),
+  'data',
+  'products.json'
+);
 
-const getProductsFromFile = callback => {
-
-    fs.readFile(dataFolder, 'utf8', (err, fileContent) => {
-
-        if (err)
-            callback([]);
-        else
-            callback(JSON.parse(fileContent));
-    });
-
+const getProductsFromFile = cb => {
+  fs.readFile(p, (err, fileContent) => {
+    if (err) {
+      cb([]);
+    } else {
+      cb(JSON.parse(fileContent));
+    }
+  });
 };
 
-console.log(`dirname : ${rootFolder}`);
-class Product {
+module.exports = class Product {
+  constructor(title, imageUrl, description, price) {
+    this.title = title;
+    this.imageUrl = imageUrl;
+    this.description = description;
+    this.price = price;
+  }
 
-    constructor(title) {
-        this.title = title;
-    }
+  save() {
+    getProductsFromFile(products => {
+      products.push(this);
+      fs.writeFile(p, JSON.stringify(products), err => {
+        console.log(err);
+      });
+    });
+  }
 
-    save() {
-
-        getProductsFromFile(products => {
-            products.push(this);
-            const updatedContent = JSON.stringify(products, null, 2);
-            fs.writeFile(path.join(rootFolder, 'data', 'products.json'), updatedContent, 'utf8', writeErr => {
-                if (writeErr) {
-                    console.error('Erro ao escrever no arquivo:', writeErr);
-                } else {
-                    console.log('Arquivo atualizado com sucesso!');
-                }
-            });
-
-        });
-    }
-
-    //importante para tratar assincronismo. (precisa mexer no chamador também.)
-    static fetchAll(callback) {
-        Product.fetchAllMinus(callback); // sem return ??? 
-    }
-
-    //esta segunda função foi chamada de forma redundante apenas
-    // para fins educativos.
-    static fetchAllMinus(callback) {
-        getProductsFromFile(callback); 
-   }
-}
-
-
-module.exports = Product
+  static fetchAll(cb) {
+    getProductsFromFile(cb);
+  }
+};

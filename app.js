@@ -1,8 +1,9 @@
 const path = require('path');
-const mainController = require('./controllers/main');
 
 const express = require('express');
 const bodyParser = require('body-parser');
+
+const errorController = require('./controllers/error');
 
 const app = express();
 
@@ -15,9 +16,9 @@ const shopRoutes = require('./routes/shop');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/admin', adminRoutes.routes);
-app.use(shopRoutes.routes);
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
 
-app.use(mainController.getNotFound);
+app.use(errorController.get404);
 
 app.listen(3000);
