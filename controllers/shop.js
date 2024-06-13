@@ -10,6 +10,19 @@ exports.getProducts = (req, res, next) => {
   });
 };
 
+
+exports.getProductsById = (req, res, next) => {
+
+  //precisa ter o mesmo nome que foi usado no controller.
+  const id = req.params.id;
+ 
+  Product.findById(id, product => { 
+    console.log(product);
+     res.redirect("/");
+  });
+
+};
+
 exports.getIndex = (req, res, next) => {
   Product.fetchAll(products => {
     res.render('shop/index', {

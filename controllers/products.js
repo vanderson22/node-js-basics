@@ -42,6 +42,7 @@ module.exports.getProducts =
       // });
 
       //renderizar após o callback terminar, ele substitui o return!
+      // Mesmo sem return, a variável é preenchida.
        Product.fetchAll(productsCallback =>{
 
         res.render('shop', {
