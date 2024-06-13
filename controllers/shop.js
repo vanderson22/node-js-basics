@@ -18,7 +18,12 @@ exports.getProductsById = (req, res, next) => {
  
   Product.findById(id, product => { 
     console.log(product);
-     res.redirect("/");
+    
+    res.render('shop/product-detail', {
+      product: product,
+      pageTitle: 'Products-Details',
+      path: `/products/${id}`
+    });
   });
 
 };
