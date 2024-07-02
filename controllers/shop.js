@@ -15,10 +15,10 @@ exports.getProductsById = (req, res, next) => {
 
   //precisa ter o mesmo nome que foi usado no controller.
   const id = req.params.id;
- 
-  Product.findById(id, product => { 
+
+  Product.findById(id, product => {
     console.log(product);
-    
+
     res.render('shop/product-detail', {
       product: product,
       pageTitle: 'Products-Details',
@@ -42,6 +42,22 @@ exports.getCart = (req, res, next) => {
   res.render('shop/cart', {
     path: '/cart',
     pageTitle: 'Your Cart'
+  });
+};
+
+exports.postCart = (req, res, next) => {
+  const product = req.body.prod;
+  // adicionar o produto ao chart.
+  const prod = new Product(product.title, product.imageUrl, product.description, product.price)
+  const prods = [];
+
+  prods.push(prod);
+  console.log(`Product to chart- [${prod.title}]`);
+
+  res.render('shop/cart', {
+    path: '/cart',
+    pageTitle: 'Your Cart',
+    prods: prods
   });
 };
 
